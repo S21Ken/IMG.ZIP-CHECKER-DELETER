@@ -72,9 +72,27 @@ def main():
     st.set_page_config(page_title="Image Cleaner", layout="centered")
     st.title("🖼️ Clean Image ZIP by List & Size")
 
+    # 🔒 Hidden "KMS" watermark (only shows when highlighted)
+    st.markdown("""
+        <style>
+        .hidden-kms::selection {
+            background-color: yellow;
+            color: black;
+        }
+        .hidden-kms {
+            color: transparent;
+            user-select: text;
+            font-size: 0.1px;
+        }
+        </style>
+        <div class="hidden-kms">KMS</div>
+    """, unsafe_allow_html=True)
+
     uploaded_zip = st.file_uploader("📦 Upload ZIP File", type=["zip"])
     uploaded_txt = st.file_uploader("📄 Upload List (TXT)", type=["txt"])
     tolerance = st.slider("📏 Size Tolerance (±px)", min_value=0, max_value=10, step=1, value=1)
+
+
 
 
     if uploaded_zip and uploaded_txt:
