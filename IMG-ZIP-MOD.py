@@ -106,6 +106,7 @@ def main():
             st.code("\n".join(sorted(not_in_zip)), language='text')
 
         if st.button("🧹 Delete images NOT in list"):
+
             deleted = delete_unlisted_images(extract_path, retain_list)
             st.success(f"🗑️ Deleted {len(deleted)} images not in the list.")
 
@@ -114,6 +115,15 @@ def main():
             st.success(f"🗑️ Deleted {len(deleted_by_size)} images with size mismatch.")
             with st.expander("📄 Deleted size mismatch details"):
                 st.code("\n".join(deleted_by_size))
+
+        if st.button("🧹 Clean All (Not in List + Incorrect Size)"):
+            deleted = delete_unlisted_images(extract_path, retain_list)
+            deleted_by_size = check_and_delete_by_size(extract_path, tolerance)
+
+            st.success(f"🧹 Cleaned {len(deleted)} images not in list and {len(deleted_by_size)} size mismatches.")
+            with st.expander("📄 Deleted by size mismatch (from Clean All)"):
+                st.code("\n".join(deleted_by_size))
+
 
         result_zip = "filtered_output.zip"
         create_zip_from_folder(extract_path, result_zip)
