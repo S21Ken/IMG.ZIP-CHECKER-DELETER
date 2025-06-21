@@ -140,9 +140,13 @@ def main():
             with st.expander("📄 Deleted by size mismatch (from Clean All)"):
                 st.code("\n".join(deleted_by_size))
 
+                
+
 
         result_zip = "filtered_output.zip"
         create_zip_from_folder(extract_path, result_zip)
+
+        
 
         with open(result_zip, "rb") as f:
             st.download_button(
@@ -151,6 +155,10 @@ def main():
                 file_name="filtered_images.zip",
                 mime="application/zip"
             )
+
+            #My watermark
+    st.markdown("---")
+    st.markdown("**KMS**", unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
