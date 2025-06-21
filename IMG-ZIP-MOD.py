@@ -73,30 +73,22 @@ def main():
     st.set_page_config(page_title="Image Cleaner", layout="centered")
     st.title("🖼️ Clean Image ZIP by List & Size")
 
-     # Invisible watermark
-        # Invisible watermark
-    hidden_kms_html = """
-<style>
-  .hidden-kms {
-    color: transparent;
-    user-select: text;
-    font-size: 1px;
-    line-height: 0;
-  }
-  .hidden-kms::selection {
-    background: yellow;
-    color: black;
-  }
-</style>
-<div class="hidden-kms">KMS</div>
-"""
-    components.html(hidden_kms_html, height=0, width=0)
-
-
+    # ✅ Invisible watermark properly indented inside main()
+    st.markdown(
+        """
+        <span style='color: transparent; font-size: 1px; user-select: text'>
+        KMS
+        </span>
+        """,
+        unsafe_allow_html=True
+    )
 
     uploaded_zip = st.file_uploader("📦 Upload ZIP File", type=["zip"])
     uploaded_txt = st.file_uploader("📄 Upload List (TXT)", type=["txt"])
     tolerance = st.slider("📏 Size Tolerance (±px)", min_value=0, max_value=10, step=1, value=1)
+
+    # ... (rest of your code remains the same)
+
 
 
 
