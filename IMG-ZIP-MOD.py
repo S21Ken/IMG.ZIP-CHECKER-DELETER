@@ -160,5 +160,11 @@ def main():
     st.markdown("---")
     st.markdown("**KMS**", unsafe_allow_html=True)
 
+    st.markdown(
+    "<span style='color:transparent; user-select:text;'>KMS</span>",
+    unsafe_allow_html=True
+)
+
+
 if __name__ == "__main__":
     main()
