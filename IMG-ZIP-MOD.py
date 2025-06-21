@@ -3,6 +3,7 @@ import zipfile
 import shutil
 from PIL import Image
 import streamlit as st
+import streamlit.components.v1 as components
 
 def get_expected_size(folder_name):
     try:
@@ -73,21 +74,21 @@ def main():
     st.title("🖼️ Clean Image ZIP by List & Size")
 
     # Invisible watermark
-    st.markdown("""
-        <style>
-            .hidden-kms {
-                color: transparent;
-                user-select: text;
-                font-size: 1px;
-                line-height: 0;
-            }
-            .hidden-kms::selection {
-                background: yellow;
-                color: black;
-            }
-        </style>
-        <div class="hidden-kms">KMS</div>
-    """, unsafe_allow_html=True)
+    hidden_kms_html = """
+<style>
+  .hidden-kms {
+    color: transparent;
+    user-select: text;
+    font-size: 1px;
+    line-height: 0;
+  }
+  .hidden-kms::selection {
+    background: yellow;
+    color: black;
+  }
+</style>
+<div class="hidden-kms">KMS</div>
+"""
 
     uploaded_zip = st.file_uploader("📦 Upload ZIP File", type=["zip"])
     uploaded_txt = st.file_uploader("📄 Upload List (TXT)", type=["txt"])
