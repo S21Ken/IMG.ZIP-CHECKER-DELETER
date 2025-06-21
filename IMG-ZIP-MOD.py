@@ -73,7 +73,7 @@ def main():
     st.set_page_config(page_title="Image Cleaner", layout="centered")
     st.title("🖼️ Clean Image ZIP by List & Size")
 
-    # Invisible watermark
+     # Invisible watermark
     hidden_kms_html = """
 <style>
   .hidden-kms {
@@ -89,6 +89,7 @@ def main():
 </style>
 <div class="hidden-kms">KMS</div>
 """
+    components.html(hidden_kms_html, height=0, width=0)
 
     uploaded_zip = st.file_uploader("📦 Upload ZIP File", type=["zip"])
     uploaded_txt = st.file_uploader("📄 Upload List (TXT)", type=["txt"])
