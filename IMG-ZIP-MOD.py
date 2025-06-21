@@ -74,14 +74,24 @@ def main():
     st.title("🖼️ Clean Image ZIP by List & Size")
 
      # Invisible watermark
-    st.markdown(
-    """
-<span style="color: transparent; font-size: 1px; user-select: text">
-KMS
-</span>
-""",
-    unsafe_allow_html=True,
-)
+        # Invisible watermark
+    hidden_kms_html = """
+<style>
+  .hidden-kms {
+    color: transparent;
+    user-select: text;
+    font-size: 1px;
+    line-height: 0;
+  }
+  .hidden-kms::selection {
+    background: yellow;
+    color: black;
+  }
+</style>
+<div class="hidden-kms">KMS</div>
+"""
+    components.html(hidden_kms_html, height=0, width=0)
+
 
 
     uploaded_zip = st.file_uploader("📦 Upload ZIP File", type=["zip"])
